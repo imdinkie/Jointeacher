@@ -18,11 +18,10 @@ def resource_path(relative_path):
 
 
 def GetTeacherShort():
-    teacher_short = input("Lehrerkürzel eingeben:\n").capitalize()
-    return teacher_short
+    teacher_short = input("Lehrerkürzel eingeben:\n").replace(" ", "").capitalize()
 
+    # Remove Umlauts
 
-def ChangeUmlauts(teacher_short):
     umlautDict = {
         "ä": "ae",
         "ö": "oe",
@@ -30,35 +29,36 @@ def ChangeUmlauts(teacher_short):
     }
     for i, j in umlautDict.items():
         teacher_short = teacher_short.replace(i, j)
+
     return teacher_short
 
 
 def GoToWebsite():
-    teacher_short = ChangeUmlauts(GetTeacherShort())
+    teacher_short = GetTeacherShort()
 
-    if teacher_short in roomnumberdict:
+    if teacher_short in roomnumberdict.keys():
         webbrowser.open("https://gymnasiumspaichingen.webex.com/meet/" + teacher_short)
-        raumnummer = roomnumberdict.get(teacher_short).split(";")
+        room_data = roomnumberdict.get(teacher_short).split(";")
     else:
-        print('Dieses Lehrerkürzel existiert nicht im Datenblatt.')
+        print("Das Lehrerkürzel: '" + teacher_short + "' existiert nicht im Datenblatt.")
         os.system("pause")
         return
-    print('Raum von "' + raumnummer[1] + '" wurde im Browser geöffnet!')
+    print('Raum von "' + room_data[1] + '" wurde im Browser geöffnet!')
     os.system("pause")
 
 
 def CopyRoomnumber():
-    teacher_short = ChangeUmlauts(GetTeacherShort())
+    teacher_short = GetTeacherShort()
 
-    if teacher_short in roomnumberdict:
-        raumnummer = roomnumberdict.get(teacher_short).split(";")
+    if teacher_short in roomnumberdict.keys():
+        room_data = roomnumberdict.get(teacher_short).split(";")
     else:
-        print("Dieses Lehrerkürzel existiert nicht im Datenblatt.")
+        print("Das Lehrerkürzel: '" + teacher_short + "' existiert nicht im Datenblatt.")
         os.system("pause")
         return
 
-    pyperclip.copy(raumnummer[0])
-    print('Raumnummer von "' + raumnummer[1] + '" wurde in die Zwischenablage kopiert!')
+    pyperclip.copy(room_data[0])
+    print('Raumnummer von "' + room_data[1] + '" wurde in die Zwischenablage kopiert!')
     os.system("pause")
 
 
