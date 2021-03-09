@@ -1,9 +1,9 @@
 import csv
 import webbrowser
 import pyperclip
-import msvcrt
 import os
 import sys
+import readchargerman as readchar
 
 
 def resource_path(relative_path):
@@ -74,12 +74,12 @@ while True:
     clear()
     print(
         "L eingeben, um den Lehrerlink direkt aufzurufen.\nR eingeben, um die Raumnummer in die Zwischenablage zu kopieren.")
-    start_options = msvcrt.getch().decode('ASCII')
+    start_options = readchar.readkey().upper()
 
-    if start_options.upper() == 'L':
+    if start_options == 'L':
         clear()
         GoToWebsite()
-    elif start_options.upper() == 'R':
+    elif start_options == 'R':
         clear()
         CopyRoomnumber()
     else:
