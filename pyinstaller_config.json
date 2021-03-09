@@ -60,6 +60,10 @@
   {
    "optionDest": "datas",
    "value": "C:/Users/Justin Dankert/Documents/GitHub/Jointeacher/raumnummern.csv;."
+  },
+  {
+   "optionDest": "datas",
+   "value": "C:/Users/Justin Dankert/Documents/GitHub/Jointeacher/readchargerman;readchargerman/"
   }
  ],
  "nonPyinstallerOptions": {
